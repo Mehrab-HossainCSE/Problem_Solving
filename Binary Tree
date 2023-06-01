@@ -1,0 +1,145 @@
+///   ***   ---   |         In the name of ALLAH        |||   ---   ***   ///
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+typedef long long ll;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<vi> vvi;
+typedef vector<vl> vvl;
+typedef pair<int,int> pii;
+typedef pair<double, double> pdd;
+typedef pair<ll, ll> pll;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
+typedef double dl;
+
+#define endl '\n'
+#define PB push_back
+#define F first
+#define S second
+#define all(a) (a).begin(),(a).end()
+#define rall(a) (a).rbegin(),(a).rend()
+#define sz(x) (int)x.size()
+
+const double PI = acos(-1);
+const double eps = 1e-9;
+const int inf = 2000000000;
+const ll infLL = 9000000000000000000;
+#define MOD 1000000007
+
+#define mem(a,b) memset(a, b, sizeof(a) )
+#define sqr(a) ((a) * (a))
+
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define fraction() cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed,ios::floatfield);
+#define file() freopen("input.txt","r",stdin);freopen("output.txt","w",stdout);
+
+#define dbg(args...) do {cerr << #args << " : "; faltu(args); } while(0)
+void faltu () {            cerr << endl;}
+template < typename T, typename ... hello>void faltu( T arg, const hello &... rest) {cerr << arg << ' ';faltu(rest...);}
+
+ll gcd ( ll a, ll b ) { return __gcd ( a, b ); }
+ll lcm ( ll a, ll b ) { return a * ( b / gcd ( a, b ) ); }
+
+int dx[] = { -1, +1, 0, 0 };
+int dy[] = { 0, 0, -1, +1 };
+typedef struct node Node;
+struct node{
+    int data;
+    Node *left;
+    Node *right;
+};
+Node *CreateNode(int item)
+{
+    Node *newNode=(Node*) malloc(sizeof(Node));
+    if(newNode==NULL){
+        cout<<"Memory is not create"<<endl;
+        exit(1);
+    }
+    newNode->data=item;
+    newNode->left=NULL;
+    newNode->right=NULL;
+    return newNode;
+}
+void addLeft(Node *prnt,Node *child)
+{
+    prnt->left=child;
+}
+void addRight(Node *prnt,Node *child)
+{
+    prnt->right=child;
+}
+Node *CreateTree()
+{
+    Node *two=CreateNode(2);
+    Node *seven=CreateNode(7);
+    Node *nine=CreateNode(9);
+    addLeft(two,seven);
+    addRight(two,nine);
+    
+    Node *one=CreateNode(1);
+    Node *six=CreateNode(6);
+    addLeft(seven,one);
+    addRight(seven,six);
+    
+    Node *five=CreateNode(5);
+    Node *ten=CreateNode(10);
+    addLeft(six,five);
+    addRight(six,ten);
+    
+    Node *eight=CreateNode(8);
+    addRight(nine,eight);
+    
+    Node *three=CreateNode(3);
+    Node *four=CreateNode(4);
+    
+    addLeft(eight,three);
+    addRight(eight,four);
+    return two;
+    
+}
+void PreOrder(Node *root)
+{
+   cout<<root->data<< " ";
+   if(root->left!=NULL) PreOrder(root->left);
+   if(root->right!=NULL) PreOrder(root->right);
+}
+void PostOrder(Node *root){
+    if(root->left!=NULL){
+      
+      PostOrder(root->left);  
+    } 
+   if(root->right!=NULL) {
+      
+       PostOrder(root->right);
+   }
+   cout<<root->data<<" ";
+}
+void InOrder(Node *root){
+    if(root->left!=NULL){
+        InOrder(root->left);
+    }
+    cout<<root->data<<" ";
+    if(root->right!=NULL){
+        InOrder(root->right);
+    }
+}
+int main()
+{  
+    optimize();
+   Node *root=CreateTree();
+   cout<<"Root in this treee"<<endl;
+   cout<<root->data<<endl;
+   cout<<"PreOrder teversel first root then left then right"<<endl;
+   PreOrder(root);
+   cout<<"PostOrder teversel left then right then root"<<endl;
+   PostOrder(root);
+   cout<<"InOrder teversel left then root then right"<<endl;
+   InOrder(root);
+   return 0;
+}
