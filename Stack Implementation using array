@@ -93,6 +93,6 @@ int main()
    ans=Top();
    cout<<"The top element is"<<endl;
    cout<<ans<<endl;
-  //youTube link:https://www.youtube.com/watch?v=GYptUgnIM_I&list=PLgUwDviBIf0oSO572kQ7KCSvCUh1AdILj&ab_channel=takeUforward
+  //youTube link:https://youtu.be/GYptUgnIM_I
    return 0;
 }
