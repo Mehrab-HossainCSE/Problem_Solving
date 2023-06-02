@@ -104,6 +104,6 @@ int main()
     for(int i=1;i<sz;i++) cout<<arr[i]<<" ";
      cout<<endl;
     //overall time complexity is O(nlogn );
-    // YouTube link:https://www.youtube.com/watch?v=NKJnHewiGdc&ab_channel=CodeHelp-byBabbar
+    // YouTube link:https:https://youtu.be/NKJnHewiGdc
    return 0;
 }
