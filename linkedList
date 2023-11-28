@@ -105,16 +105,98 @@ Node* deleteKthNode(Node* next,int k)
     return next;
 }
 
-
-
+Node* deleteValue(int value,Node* head)
+{
+    if(!head) return head;
+    else if(head->data==value){
+        Node* tem=head;
+        head=head->next;
+        delete tem;
+        return head;
+    }
+    else{
+        Node* tem=head;
+        Node* pre=NULL;
+        while(tem){
+            if(tem->data==value){
+                pre->next=pre->next->next;
+                delete tem;
+                break;
+            }
+             pre=tem;
+             tem=tem->next;
+        } 
+       
+    }
+    return head;
+}
+Node* insertHead(int value,Node* head)
+{
+  
+    Node* dummy=new Node(value,head);
+   
+    return dummy;
+}
+Node* insertLast(int value,Node* head)
+{   
+    if(!head){
+        return head=new Node(value,nullptr);
+    }
+    Node* tem=head;
+    while(tem->next){
+        tem=tem->next;
+    }
+    Node* dummy=new Node(value,nullptr);
+    tem->next=dummy;
+    return head;
+}
+Node* insertKth(int value,int k,Node* head)
+{
+    Node* tem=head;
+    int cnt=0;
+   // Node* pre=NULL;
+    while(tem){
+        cnt++;
+        if(cnt==k-1){
+            Node* dummy=new Node(value,nullptr);
+            Node* tem1=tem->next;
+            tem->next=dummy;
+            dummy->next=tem1;
+            break;
+        }
+        tem=tem->next;
+    }
+    return head;
+}
+Node *insertBefor(int ele,int value,Node* head)
+{
+    Node* tem=head;
+    int cnt=0;
+    Node* pre=NULL;
+    while(tem){
+       
+        if(tem->data==ele){
+            Node* dummy=new Node(value,nullptr);
+            //Node* tem1=tem->next;
+            pre->next=dummy;
+            dummy->next=tem;
+            break;
+        }
+        pre=tem;
+        tem=tem->next;
+    }
+    return head;
+}
 int main()
 {
     vector<int> v={2,21,4,5,6};
     Node* head=convertLinkedList(v);
-    
+     
     print(head);
     cout<<endl;
-    cout<<"Delete The First Node from the linked List: "<<endl;
+    /*cout<<endl;
+    cout<<head->next->data<<endl;*/
+    /*cout<<"Delete The First Node from the linked List: "<<endl;
     Node* head1=DeleteHead(head);
     print(head1);
     cout<<endl;
@@ -127,6 +209,26 @@ int main()
     //int k=2;
     Node* head7=  deleteKthNode(head2,3);
     print(head7);
+    cout<<endl;
+    cout<<"Delete The value from the linked List: "<<endl;
+    head=deleteValue(21,head7);
+    print(head);
+    cout<<endl;*/
+    cout<<"Insert The value Head of the linked List: "<<endl;
+    head=insertHead(5,head);
+    print(head);
+    cout<<endl;
+    head=insertLast(100,head);
+    cout<<"Insert The value Last of the linked List: "<<endl;
+    print(head);
+    cout<<endl;
+    cout<<"Insert element Kth  position to the linked List: "<<endl;
+    head=insertKth(200,3,head);
+    print(head);
+    cout<<endl;
+    head=insertBefor(200,300,head);
+    cout<<"Insert value before  specic emement to the linked List: "<<endl;
+    print(head);
     cout<<endl;
     return 0;
 }
