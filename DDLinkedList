@@ -85,8 +85,47 @@ Node* deleteKthNode(Node* head1,int k)
     else{
         prev->next=tem->next;
         front->back=prev;
+        tem->back=nullptr;
+        tem->next=nullptr;
+        delete tem;
     }
     return head1;
+}
+void deleteNode(Node* head)
+{
+    Node* prev=head->back;
+    Node* front=head->next;
+    if(front==NULL){
+        prev->next=nullptr;
+        head->back=nullptr;
+        delete head;
+        return;
+    }
+    prev->next=front;
+    front->back=prev;
+    head->next=nullptr;
+    head->back=nullptr;
+    delete head;
+    return ;
+    
+}
+Node* insertHead(int value,Node* head)
+{
+    //Node* tem1=tem;
+    Node* newHead=new Node(value,nullptr,head);
+    head->back=head;
+    return newHead;
+    
+}
+Node* insertTail(int value,Node* head)
+{  
+    Node* tem=head;
+    while(tem->next){
+        tem=tem->next;
+    }
+    Node* tail=new Node(value,tem,nullptr);
+    tem->next=tail;
+    return head;
 }
 int main() {
     
@@ -102,6 +141,15 @@ int main() {
     print(head);*/
     cout<<"Afer deleting kth Node"<<endl;
     head=deleteKthNode(head,3);
+    print(head);
+    cout<<"Afer deleting given address  Node"<<endl;
+    deleteNode(head->next);
+    print(head);
+    cout<<"Insert element before the Head"<<endl;
+    head=insertHead(10,head);
+    print(head);
+    cout<<"Insert element After the Tail"<<endl;
+    head=insertAfterTail(35,head);
     print(head);
     return 0;
 }
