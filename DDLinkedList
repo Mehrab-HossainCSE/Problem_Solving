@@ -63,6 +63,31 @@ Node* deleteTail(Node* head1)
    
      return head1;
 }
+Node* deleteKthNode(Node* head1,int k)
+{
+    Node* tem=head1;
+    int cnt=0;
+    while(tem!=NULL){
+        cnt++;
+        if(cnt==k) break;
+        tem=tem->next;
+    }
+    
+    Node* front=tem->next;
+    Node* prev=tem->back;
+    if(prev==NULL && front==NULL) return NULL;
+    else if(prev==NULL){
+        return deleteHead(head1);
+    }
+    else if(front==NULL){
+        return deleteTail(head1);
+    }
+    else{
+        prev->next=tem->next;
+        front->back=prev;
+    }
+    return head1;
+}
 int main() {
     
    int arr[]={2,3,4,56,34};
@@ -72,7 +97,11 @@ int main() {
     cout<<"After deleting Head pointer"<<endl;
     head=deleteHead(head);
     print(head);
-    head= deleteTail(head);
-   print(head);
+   /* head= deleteTail(head);
+    cout<<"After deleting Tail pointer"<<endl;
+    print(head);*/
+    cout<<"Afer deleting kth Node"<<endl;
+    head=deleteKthNode(head,3);
+    print(head);
     return 0;
 }
