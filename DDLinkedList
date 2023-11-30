@@ -117,8 +117,9 @@ Node* insertHead(int value,Node* head)
     return newHead;
     
 }
-Node* insertTail(int value,Node* head)
-{  
+Node* insertAfterTail(int value,Node* head)
+{   
+    if(head==NULL) return head;
     Node* tem=head;
     while(tem->next){
         tem=tem->next;
@@ -127,9 +128,22 @@ Node* insertTail(int value,Node* head)
     tem->next=tail;
     return head;
 }
+
+Node* insertBeforeTail(int value,Node* head)
+{   
+    if(head==NULL) return head;
+    Node* tem=head;
+    while(tem->next!=NULL){
+        tem=tem->next;
+    }
+    Node* prev=tem->back;
+    Node* tem1=new Node(value,prev,tem);
+    prev->next=tem1;
+    return head;
+}
 int main() {
     
-   int arr[]={2,3,4,56,34};
+   int arr[]={2,3,4,56,34,35,77,29};
   
     Node* head=convertDL(arr,5);
     print(head);
@@ -150,6 +164,9 @@ int main() {
     print(head);
     cout<<"Insert element After the Tail"<<endl;
     head=insertAfterTail(35,head);
+    print(head);
+     cout<<"Insert element Before the Tail"<<endl;
+    head=insertBeforeTail(88,head);
     print(head);
     return 0;
 }
