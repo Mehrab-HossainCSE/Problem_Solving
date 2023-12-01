@@ -15,7 +15,7 @@ class Node{
     }
 };
 void print(Node* head)
-{
+{   cout<<"Print from the Head: "<<endl;
     while(head){
         cout<<head->data<<" ";
         head=head->next;
@@ -141,6 +141,37 @@ Node* insertBeforeTail(int value,Node* head)
     prev->next=tem1;
     return head;
 }
+Node* insertBeforeKth(int value,int k,Node* head)
+{
+    if(head==NULL ||head->next==NULL) return NULL;
+    Node* tem=head;
+    int cnt=0;
+    while(tem){
+        cnt++;
+        if(cnt==k) break;
+        tem=tem->next;
+    }
+    Node* newBack=tem->back;
+    Node* newFront=newBack->next;
+    Node* newNode=new Node(value,newBack,newFront);
+    newBack->next=newNode;
+    tem->back=newNode;
+    return head;
+}
+/*Node* printBack(Node* head)
+{  cout<<"Print from the Back: "<<endl;
+    Node* tem=head;
+    Node* prev=NULL;
+    while(tem){
+        prev=tem;
+        tem=tem->next;
+    }
+    cout<<prev->data<<endl;
+    while(prev){
+        cout<<prev->data<<" ";
+        prev=prev->back;
+    }
+}*/
 int main() {
     
    int arr[]={2,3,4,56,34,35,77,29};
@@ -165,8 +196,12 @@ int main() {
     cout<<"Insert element After the Tail"<<endl;
     head=insertAfterTail(35,head);
     print(head);
-     cout<<"Insert element Before the Tail"<<endl;
+    cout<<"Insert element Before the Tail"<<endl;
     head=insertBeforeTail(88,head);
     print(head);
+    head=insertBeforeKth(55,5,head);
+    cout<<"Insert element Before the Kth element"<<endl;
+    print(head);
+   // printBack(head);
     return 0;
 }
